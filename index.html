@@ -537,6 +537,14 @@
 
             clients.push(client);
             saveClientsToStorage();
+    fetch("https://script.google.com/macros/s/AKfycbzB8hCLQNyIOcBWzImcJwKFXFICzYiZt98FSOxg4nGOA-0peidHpvUtMZUtW4cgneTAGQ/exec", {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(client)
+    });
 
             // Reset Form
             document.getElementById('cName').value = '';
