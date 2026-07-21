@@ -519,39 +519,44 @@
                 if(input.value.trim() !== '') prodList.push(input.value.trim());
             });
 
-            let now = new Date();
-            let dateStr = now.toLocaleDateString('ar-EG', { year: 'numeric', month: 'numeric', day: 'numeric' });
-            let timeStr = now.toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' });
-            let fullDate = `${dateStr} (${timeStr})`;
+                let now = new Date();
+    let dateStr = now.toLocaleDateString('ar-EG', { year: 'numeric', month: '2-digit', day: '2-digit' });
+    let timeStr = now.toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' });
+    let fullDate = `${dateStr} (${timeStr})`;
 
-            let client = {
-                id: Date.now(),
-                date: fullDate,
-                name: document.getElementById('cName').value.trim(),
-                phone: document.getElementById('cPhone').value.trim(),
-                addr: document.getElementById('cAddr').value.trim(),
-                products: prodList,
-                salesUser: activeUser.user,
-                salesName: activeUser.name
-            };
+    let client = {
+      id: Date.now(),
+      date: fullDate,
+      name: document.getElementById('cName').value.trim(),
+      phone: document.getElementById('cPhone').value.trim(),
+      addr: document.getElementById('cAddr').value.trim(),
+      products: prodList,
+      salesUser: activeUser.user,
+      salesName: activeUser.name
+    };
 
-            clients.push(client);
-            saveClientsToStorage();
-fetch("https://script.google.com/macros/s/AKfycbzB8hCLQNyIOcBWzImcJwKFXFICzYiZt98FSOxg4nGOA-0peidHpvUtMZUtW4cgneTAGQ/exec", {
-  method: "POST",
-  mode: "no-cors",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify(client)
-});
-            
-        
-            // Reset Form
-            document.getElementById('cName').value = '';
-            document.getElementById('cPhone').value = '';
-            document.getElementById('cAddr').value = '';
-            document.getElementById('productsBox').innerHTML = `
+    clients.push(client);
+    saveClientsToStorage();
+
+    fetch("https://script.google.com/macros/s/AKfycbzB8hCLQNyIOcBWzImcJwKFXFICzYiZt98FSOxg4nGOA-0peidHpvUtMZUtW4cgneTAGQ/exec", {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(client)
+    });
+
+    // Reset Form
+    document.getElementById('cName').value = '';
+    document.getElementById('cPhone').value = '';
+    document.getElementById('cAddr').value = '';
+    document.getElementById('productsBox').innerHTML = `
+      <div class="product-group">
+        <input type="text" class="form-control prod-input" required placeholder="اسم المنتج (مثال: شاشة تورنادو 55)">
+      </div>
+    `;
+
                 <div class="product-group">
                     <input type="text" class="form-control prod-input" required placeholder="اسم المنتج (مثال: شاشة تورنادو 55)">
                 </div>
